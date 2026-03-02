@@ -1,0 +1,59 @@
+.home-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carousel-section {
+  margin-bottom: 48px;
+}
+
+.carousel-section .ant-carousel .slick-slide {
+  text-align: center;
+  line-height: 400px;
+  overflow: hidden;
+}
+
+.features-section .ant-card {
+  transition: all 0.3s ease;
+}
+
+.features-section .ant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.categories-section .ant-card {
+  transition: all 0.3s ease;
+}
+
+.categories-section .ant-card:hover {
+  transform: scale(1.05);
+}
+
+.hot-products-section .ant-card,
+.new-products-section .ant-card {
+  transition: all 0.3s ease;
+}
+
+.hot-products-section .ant-card:hover,
+.new-products-section .ant-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.promotion-section .ant-card {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 0 16px;
+  }
+
+  .carousel-section .ant-carousel .slick-slide {
+    line-height: 300px;
+  }
+
+  .features-section .ant-card {
+    margin-bottom: 16px;
+  }
+}
