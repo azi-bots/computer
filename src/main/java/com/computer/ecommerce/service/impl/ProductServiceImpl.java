@@ -14,6 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 商品服务实现类
@@ -78,5 +79,29 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
         wrapper.eq("supplier_id", supplierId);
         return baseMapper.selectPage(page, wrapper);
+    }
+
+    /**
+     * 获取热门商品（按销量降序）
+     */
+    @Override
+    @Cacheable(key = "'hot:' + #limit")
+    public List<Product> getHotProducts(Integer limit) {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("sales_count");
+        wrapper.last("LIMIT " + limit);
+        return baseMapper.selectList(wrapper);
+    }
+
+    /**
+     * 获取新品（按创建时间降序）
+     */
+    @Override
+    @Cacheable(key = "'new:' + #limit")
+    public List<Product> getNewProducts(Integer limit) {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("created_at");
+        wrapper.last("LIMIT " + limit);
+        return baseMapper.selectList(wrapper);
     }
 }

@@ -56,6 +56,30 @@ public class ProductController {
     }
 
     /**
+     * 获取热门商品
+     */
+    @GetMapping("/hot")
+    public Result<List<ProductResponse>> getHotProducts(@RequestParam(defaultValue = "10") Integer limit) {
+        List<Product> products = productService.getHotProducts(limit);
+        List<ProductResponse> responses = products.stream()
+            .map(dtoConverter::toProductResponse)
+            .collect(Collectors.toList());
+        return Result.ok(responses);
+    }
+
+    /**
+     * 获取新品
+     */
+    @GetMapping("/new")
+    public Result<List<ProductResponse>> getNewProducts(@RequestParam(defaultValue = "10") Integer limit) {
+        List<Product> products = productService.getNewProducts(limit);
+        List<ProductResponse> responses = products.stream()
+            .map(dtoConverter::toProductResponse)
+            .collect(Collectors.toList());
+        return Result.ok(responses);
+    }
+
+    /**
      * 根据ID获取商品
      */
     @GetMapping("/{id}")

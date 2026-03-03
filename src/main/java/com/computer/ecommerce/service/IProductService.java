@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.computer.ecommerce.entity.Product;
 
+import java.util.List;
+
 /**
  * 商品服务接口
  */
@@ -19,4 +21,14 @@ public interface IProductService extends IService<Product> {
      * 根据供应商ID分页查询商品
      */
     IPage<Product> listBySupplier(Long supplierId, Page<Product> page);
+
+    /**
+     * 获取热门商品
+     */
+    List<Product> getHotProducts(Integer limit);
+
+    /**
+     * 获取新品
+     */
+    List<Product> getNewProducts(Integer limit);
 }
