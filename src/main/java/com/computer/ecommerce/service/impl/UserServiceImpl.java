@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
@@ -32,6 +33,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 保存用户（清除相关缓存）
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     @CacheEvict(allEntries = true)
     public boolean save(User entity) {
         return super.save(entity);

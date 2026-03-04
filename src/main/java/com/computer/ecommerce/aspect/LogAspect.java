@@ -89,7 +89,7 @@ public class LogAspect {
 
             // 记录异常日志
             logger.error("API请求异常 <<< Class: {}, Method: {}, Cost: {}ms, Exception: {}",
-                className, methodName, costTime, throwable.getMessage(), throwable);
+                className, methodName, costTime, throwable.toString(), throwable);
 
             throw throwable;
         }
@@ -245,6 +245,6 @@ public class LogAspect {
         String methodName = method.getName();
 
         logger.error("API执行异常 >>> Class: {}, Method: {}, Exception: {}",
-            className, methodName, e.getMessage(), e);
+            className, methodName, e.toString(), e);
     }
 }

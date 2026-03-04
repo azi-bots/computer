@@ -2,10 +2,14 @@ spring:
   application:
     name: computer-ecommerce
 
+  # 缓存配置（临时禁用）
+  cache:
+    type: none
+
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/computer_ecommerce?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/computer_ecommerce?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 0416
     hikari:
@@ -83,6 +87,9 @@ logging:
     com.computer.ecommerce: DEBUG
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
+    org.springframework.jdbc: DEBUG
+    com.baomidou.mybatisplus: DEBUG
+    org.apache.ibatis: DEBUG
 
 # Swagger配置
 springdoc:
