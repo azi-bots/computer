@@ -60,11 +60,11 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
 
-        <!-- MySQL Driver -->
+        <!-- MySQL Driver for MySQL 5.6 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <version>5.1.49</version>
         </dependency>
 
         <!-- Redis (已在上方声明) -->

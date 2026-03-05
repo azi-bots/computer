@@ -89,8 +89,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public List<Product> getHotProducts(Integer limit) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("sales_count");
-        wrapper.last("LIMIT " + limit);
-        return baseMapper.selectList(wrapper);
+        Page<Product> page = new Page<>(1, limit);
+        IPage<Product> result = baseMapper.selectPage(page, wrapper);
+        return result.getRecords();
     }
 
     /**
@@ -101,7 +102,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public List<Product> getNewProducts(Integer limit) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("created_at");
-        wrapper.last("LIMIT " + limit);
-        return baseMapper.selectList(wrapper);
+        Page<Product> page = new Page<>(1, limit);
+        IPage<Product> result = baseMapper.selectPage(page, wrapper);
+        return result.getRecords();
     }
 }

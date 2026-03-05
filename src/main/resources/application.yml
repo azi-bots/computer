@@ -2,13 +2,18 @@ spring:
   application:
     name: computer-ecommerce
 
-  # 缓存配置（临时禁用）
+  # 缓存配置
   cache:
-    type: none
+    type: redis
+    redis:
+      time-to-live: 1h # 默认缓存过期时间
+      cache-null-values: false # 不缓存空值
+      use-key-prefix: true # 使用key前缀
+      key-prefix: "cache:" # key前缀
 
   # 数据源配置
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/computer_ecommerce?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 0416
@@ -41,6 +46,12 @@ spring:
       max-request-size: 20MB
   data:
     redis:
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+          max-wait: 3000ms
       host: 127.0.0.1
       port: 6379
       password:
